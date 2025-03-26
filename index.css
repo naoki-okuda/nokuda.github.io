@@ -1,0 +1,38 @@
+
+
+.h1{
+    color:#101010;
+}
+body{
+    color:#181818;
+}
+
+.naoki{
+    padding-right:5%;
+    float:right;
+}
+
+img{
+    width:100%;
+}
+.vdweq{
+    padding-bottom: 10px;
+    padding-left:2%;
+}
+
+.thermo{
+    /* color:#ffffff;
+    background-color: #555555 ; */
+    padding-bottom:50px;
+    padding-left:2%;
+}
+
+.howtomake{
+    padding-left:2%;
+}
+
+
+footer{
+    background-color: #444444;
+    height:1000px;
+}

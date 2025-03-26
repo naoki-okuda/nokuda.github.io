@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="vdWFreeEnergy.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async defer></script>
+    <title>van der Waals気体の自由エネルギー</title>
+</head>
+
+<body>
+    <div class="thema">
+        <h1>van der Waals 気体の自由エネルギー</h1>
+
+        <div class="mokuteki">
+            ・van der Waals状態方程式を満たす気体の自由エネルギーを導出します。<br>
+            ・ファンデルワールス気体の比熱が定数とは限らないことを示します。
+        </div>
+    </div>
+
+    <div class="explanation">
+        <h2>熱力学の関係式を整理しよう</h2>
+
+        気体が平衡や平衡に近いとき、その気体の熱力学変数がファンデルワールス状態方程式を満たすような場合を考えます。
+        
+        <span class="C white">$$ {\large P = \frac{nRT}{V-nb} - a{ \left( \frac{n}{V} \right) }^2  } $$</span>
+        
+
+        <div class="C box">
+            <img src="rotationVDWeq.gif" class="slowmovingVDWeq">
+            <p>
+                ファンデルワールスeqの概形。高さが圧力、奥に向かって温度が上がる。右方向が体積。軸の数値はいずれも正しい数値ではないので注意。(修正予定 ) 
+
+            </p>  
+        </div>
+
+        このとき、圧力がほかの熱力学量の関数として表現できている、と解釈できます。
+        <div><div class="L">$${\large P = \frac{nRT}{V-nb} - a{ \left( \frac{n}{V} \right) }^2 = P(T,V)}$$</div></div>
+        
+        <div class="clear_L">VとTを系の独立変数として決定すると、気体の系の熱力学的な平衡状態は十分に指定されると仮定します。
+        気体の出入りはなくて、構成分子の個数Nは変わらないとします。</div>
+
+        気体の熱力学的な表現を思い出しましょう。
+        \(U\)は気体の内部エネルギー、\(T\)は温度、\(S\)はエントロピー、 \(P\)は圧力、 \(V\)は体積として、
+        $$ dU = TdS - PdV $$
+        が<span class="aiiro">平衡状態の間の変化で成立します。</span>(一般の変化では成立しないです。
+            例えば、準静的でない変化を通して、非平衡的な状態に移り変わるとこの関係は成り立ちませんから。)
+            いま、V、Tを独立変数として系を考えると便利なので、少し表現を改めます。
+        
+            <div class="C">
+                $$ dU = TdS - PdV=d(TS)- SdT - PdV$$
+                $$ d(U - TS) = -SdT -PdV $$
+            </div>
+        
+        \(U - TS\)には名前が付けられています。<span class="aiiro">ヘルムホルツの自由エネルギー\(F\)</span>です。
+        \( F \equiv U - TS \)として、
+        <div class="m-top white">$$ {\large dF = -SdT -PdV  } $$</div>
+
+        <div class="partialeq">
+        $$  \left( \frac{\partial F}{\partial V}\right)_T = - P $$
+        $$  \left( \frac{\partial F}{\partial T} \right)_V = -S$$
+        </div>
+
+        が成立します。\(F\)の温度を固定した時の体積に対する変化率が圧力に対応していることがわかります。
+        つまり、圧力を体積で定積分すればヘルムホルツの自由エネルギーが求まります。
+        いま、状態方程式\(P(T, V)\)がわかっているので、この計算は実行できます。
+    </div>
+
+    <div>
+        <h2>圧力を積分して、自由エネルギーを得る</h2>
+        先ほどいったとおり、圧力を体積で積分していきます。
+        $$
+        \begin{eqnarray} 
+        F &=& \int -P(T, V) dV \\
+          &=& \int  \left[ -\frac{nRT}{V-nb} + a{ \left( \frac{n}{V} \right) }^2 \right] dV \\ 
+          &=& -nRT \ln(V - nb) - an^2\frac{1}{V}  + A(T) \\
+        
+        \end{eqnarray}
+        $$
+        \(A(T) \) は何らかの温度の関数です。
+        ２変数関数を定積分したので、積分定数が積分に使わなかった変数に依存して出てくるというだけです。
+        これであらかた、ヘルムホルツの自由エネルギーは求まったと言えます。
+        あとは、比熱を考えることでもう少し具体的な表現にできます。
+        (定積)比熱はエントロピーの温度微分です。
+    </div>
+
+    <div>
+        <h2>エントロピーや比熱の関数形</h2>
+        Fの体積を固定した時の温度に対する変化率がエントロピーです。
+
+        $$  \left( \frac{\partial F}{\partial T} \right)_V = -S$$
+        そして定積比熱\(C_V\)は次のように与えられます。
+        $$
+        C_V  \equiv     T \left( \frac{\partial S}{\partial T} \right)_V 
+        $$
+        
+        これは、\(dQ = T d S \)が、準静的な変化で成立することから納得できます。
+    
+    
+        <div class="m-top">
+            先ほど得たヘルムホルツエネルギーの関数形から、
+            <div class="big white">
+                $$S = nR\ln(V - nb) - A'(T)$$
+                $$C = -TA''(T)$$
+            </div>
+            を得ます。
+        </div>
+
+        <div class="m-top">
+            ここで、注目するべきものは比熱の形です。温度に依存する関数\(A(T)\)（の二回微分）で与えられています。
+            \(A(T)\)は体積の積分の際に勝手に用意した関数です。
+            これはつまり、<span class="aiiro">ファンデルワールス状態方程式は比熱の関数形を全く決定しないこと(もちろんエントロピーも)</span>を意味します。
+            しばしばファンデルワールス気体は定積比熱が定数とされます。
+            しかし、ファンデルワールス状態方程式を満たすからといって必ずしも比熱が定数になるとは限らない、ということがわかりました。
+                        
+        </div>
+
+        <div class="m-top">
+             比熱の形を決定するのならば、<span class="aiiro">状態方程式以外の部分に根拠を求めるべきだ</span>、という解釈もできます。
+             例えば、熱力学だけではなく統計力学の立場からも物理系を考えてみれば、エントロピーの形までもとまるかもしれません。
+             実際に、統計力学からファンデルワールス状態方程式を導くミクロな物理系を考えることはできます。いつか記事を作ります。
+             今回はここまでです。ご覧いただきありがとうございました。
+        </div>
+    </div>
+
+
+    <div class="L"></div>
+    <span class="C"></span>
+
+
+</body>
